@@ -84,15 +84,15 @@ class PlotPatchHelper:
         patchList = []
         for p in poly:
             fCol, eCol = self.nextcolor()
-            patchList.append(PolygonPatch(p, alpha=self.Alpha, FaceColor=fCol, EdgeColor=eCol, 
-                                          LineWidth=self.LineWidth))        
+            patchList.append(PolygonPatch(p, alpha=self.Alpha, facecolor=fCol, edgecolor=eCol, 
+                                          linewidth=self.LineWidth))        
         return patchList
 
 
 # Plots one or more shapely polygons in the provided axes ax. The named parameter values **kwargs are passed into
-# PlotPatchHelper's constructor, e.g. you can write plotShapelyPoly(ax, poly, LineWidth=3, Alpha=1.0). Returns a list
+# PlotPatchHelper's constructor, e.g. you can write plotshapelyPoly(ax, poly, LineWidth=3, Alpha=1.0). Returns a list
 # with the drawn patches objects even for a single polygon, for common handling
-def plotShapelyPoly(ax, poly, **kwargs):
+def plotshapelyPoly(ax, poly, **kwargs):
     return [ax.add_patch(p) for p in PlotPatchHelper(**kwargs).get_patches(poly)]
 
 
@@ -105,7 +105,7 @@ if __name__ == "__main__":
     # View the first stock together with pieces of the first order:
     fig, ax = plt.subplots()
     fig.canvas.set_window_title('Original Stock[0] and Order1')
-    plotShapelyPoly(ax, Stock[0:1]+Order1)
+    plotshapelyPoly(ax, Stock[0:1]+Order1)
     ax.relim()
     ax.autoscale_view()
     ax.set_aspect('equal')
@@ -123,7 +123,7 @@ if __name__ == "__main__":
     for i in range(1,len(shifted)):
         xshift = shifted[i-1].bounds[2] + 0.5 # previous Xmax of bounding box (bounds property) plus 0.5 space
         shifted[i] = shapely.affinity.translate(shifted[i], xshift)
-    plotShapelyPoly(ax, shifted)
+    plotshapelyPoly(ax, shifted)
     ax.relim()
     ax.autoscale_view()
     ax.set_aspect('equal')
@@ -142,9 +142,9 @@ if __name__ == "__main__":
     #remaining = Stock[6].difference(shapely.ops.cascaded_union(newOrder))
     fig, ax = plt.subplots(ncols=2)
     fig.canvas.set_window_title('Stock[6] cutting Order3 (translated & rotated)')
-    pp = plotShapelyPoly(ax[0], Stock[6:7]+newOrder)
+    pp = plotshapelyPoly(ax[0], Stock[6:7]+newOrder)
     pp[0].set_facecolor([1,1,1,1])
-    plotShapelyPoly(ax[1], remaining)
+    plotshapelyPoly(ax[1], remaining)
     ax[0].set_title('Rotated & translated order')
     ax[1].set_title('Remaining after set difference')
     ax[0].relim()
@@ -159,7 +159,7 @@ if __name__ == "__main__":
     # We can split easily it into a list of simple polygons if needed, using list(<Multipolygon>):
     fig, ax = plt.subplots()
     fig.canvas.set_window_title('Simple polygons from multi-polygon')
-    plotShapelyPoly(ax, list(remaining))
+    plotshapelyPoly(ax, list(remaining))
     ax.relim()
     ax.autoscale_view()
     ax.set_aspect('equal')
@@ -171,7 +171,7 @@ if __name__ == "__main__":
     dilated = remaining.buffer(0.3, join_style=shapely.geometry.JOIN_STYLE.mitre)
     fig, ax = plt.subplots()
     fig.canvas.set_window_title('Polygons buffering')
-    plotShapelyPoly(ax, [dilated, remaining, eroded], Alpha=0.6) # last in list gets plotted on top
+    plotshapelyPoly(ax, [dilated, remaining, eroded], Alpha=0.6) # last in list gets plotted on top
     ax.relim()
     ax.autoscale_view()
     ax.set_aspect('equal')
@@ -183,8 +183,8 @@ if __name__ == "__main__":
     opening = remaining.buffer(-0.3, join_style=joinStyle).buffer(0.3, join_style=joinStyle)
     fig, ax = plt.subplots(ncols=2)
     fig.canvas.set_window_title('Morphological opening')
-    plotShapelyPoly(ax[0], remaining)
-    plotShapelyPoly(ax[1], opening)
+    plotshapelyPoly(ax[0], remaining)
+    plotshapelyPoly(ax[1], opening)
     ax[0].set_title('Original polygon')
     ax[1].set_title('Morphological opening')
     for a in ax:
