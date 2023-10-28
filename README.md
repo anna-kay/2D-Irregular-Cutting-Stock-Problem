@@ -8,7 +8,7 @@ In the context of irregular shapes within a heterogeneous bin, this problem invo
 The following images represent our instance of the 2d-irregular cutting stock problem:
 
 Stock (bins of different sizes)
-![Stock](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/30503f3e-ce23-4855-9089-0f220f1537ea)
+![stock](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/f474e054-20c7-4046-b475-04ec8526c993)
 
 3 orders (irregularly shaped items)
 ![orders](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/2339c9b8-7f08-421c-bbdd-0f1584eed74c)
