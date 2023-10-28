@@ -41,6 +41,6 @@ analysis with machine learning techniques,” J. Financ. Data Sci., vol. 2, no. 
 S. Das and S. Sil, “Kernel-induced fuzzy clustering of image pixels with an improved
 differential evolution algorithm,” Inf. Sci. (Ny)., vol. 180, no. 8, pp. 1237–1256, 2010.
 
-https://www.inf.utfsm.cl/~mcriff/EA/eva-space-planning/part1.pdf
+E. Hopper, “Two-dimensional Packing utilising Evolutionary Algorithms and other Meta-Heuristic Methods,” no. May, 2000.
 
 https://www.youtube.com/watch?v=kHyNqSnzP8Y
