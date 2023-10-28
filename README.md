@@ -6,7 +6,6 @@ The **2D bin-cutting** or **bin-packing problem** is a challenging optimization 
 In the context of irregular shapes within a heterogeneous bin, this problem involves efficiently placing a variety of irregularly shaped items into one or more bins of different sizes and shapes while minimizing wasted space and possibly other cost-related objectives.
 
 Solved using a **two-stage implementation**:  
-  
       1. Metaheuristics; Particle Swarm Optimization or Differential Evolution  
       2. Heuristic placement routine (e.g. bottom left fit)
 
