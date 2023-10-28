@@ -8,7 +8,7 @@ The following images represent our instance of the 2d-irregular cutting stock pr
 Stock (bins of different sizes)
 ![stock](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/f474e054-20c7-4046-b475-04ec8526c993)
 
-3 orders (irregularly shaped items) to be executed sequentially
+3 orders (of irregularly shaped items/pieces) to be executed sequentially
 ![orders](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/2339c9b8-7f08-421c-bbdd-0f1584eed74c)
 
 
