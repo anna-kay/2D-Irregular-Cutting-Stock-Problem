@@ -15,8 +15,8 @@ Stock (bins of different sizes)
 
 
 Solved using a **two-stage implementation**:  
-      Stage 1. Metaheuristics; Particle Swarm Optimization or Differential Evolution  
-      Stage 2. Heuristic placement routine (e.g. bottom left fit)
+      1. Metaheuristics; Particle Swarm Optimization or Differential Evolution  
+      2. Heuristic placement routine (e.g. bottom left fit)
 
 **Particle Swarm Optimization** (PSO) is a computational optimization technique inspired by the social behavior of birds and fish. 
 It is a population-based, stochastic search algorithm that is used to find approximate solutions to optimization and search problems.
