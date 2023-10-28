@@ -25,3 +25,22 @@ It is a population-based, stochastic search algorithm that is used to find appro
 It is considered an evolutionary algorithm, which is a class of optimization techniques that draws inspiration from the principles of natural selection and genetic evolution to solve complex problems.
 
 
+## References and Literature
+
+R. P. Abeysooriya, “Cutting Patterns for Efficient Production of Irregular-shaped
+Pieces,” no. August, 2017.
+
+Bansal et al., “Inertia Weight Strategies in Particle Swarm Inertia Weight Strategies in
+Particle Swarm,” Pap. Conf. Technol. Inf. Kharagpur, Technol., no. May 2014, p. 7,
+2011.
+
+R. Dash and P. K. Dash, “A hybrid stock trading framework integrating technical
+analysis with machine learning techniques,” J. Financ. Data Sci., vol. 2, no. 1, pp. 42–
+57, 2016.
+
+S. Das and S. Sil, “Kernel-induced fuzzy clustering of image pixels with an improved
+differential evolution algorithm,” Inf. Sci. (Ny)., vol. 180, no. 8, pp. 1237–1256, 2010.
+
+https://www.inf.utfsm.cl/~mcriff/EA/eva-space-planning/part1.pdf
+
+https://www.youtube.com/watch?v=kHyNqSnzP8Y
