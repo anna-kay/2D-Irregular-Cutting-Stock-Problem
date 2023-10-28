@@ -5,6 +5,15 @@
 The **2D bin-cutting** or **bin-packing problem** is a challenging optimization problem that often arises in logistics, manufacturing, and resource allocation scenarios.
 In the context of irregular shapes within a heterogeneous bin, this problem involves efficiently placing a variety of irregularly shaped items into one or more bins of different sizes and shapes while minimizing wasted space and possibly other cost-related objectives.
 
+The following images represent our instance of the 2d-irregular cutting stock problem:
+
+Stock (bins of different sizes)
+![Stock](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/30503f3e-ce23-4855-9089-0f220f1537ea)
+
+3 orders (irregularly shaped items)
+![orders](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/2339c9b8-7f08-421c-bbdd-0f1584eed74c)
+
+
 Solved using a **two-stage implementation**:  
       1. Metaheuristics; Particle Swarm Optimization or Differential Evolution  
       2. Heuristic placement routine (e.g. bottom left fit)
