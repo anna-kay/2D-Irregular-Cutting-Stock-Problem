@@ -10,13 +10,13 @@ The following images represent our instance of the 2d-irregular cutting stock pr
 Stock (bins of different sizes)
 ![stock](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/f474e054-20c7-4046-b475-04ec8526c993)
 
-3 orders (irregularly shaped items)
+3 orders (irregularly shaped items) to be executed sequentially
 ![orders](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/2339c9b8-7f08-421c-bbdd-0f1584eed74c)
 
 
 Solved using a **two-stage implementation**:  
-      1. Metaheuristics; Particle Swarm Optimization or Differential Evolution  
-      2. Heuristic placement routine (e.g. bottom left fit)
+      Stage 1. Metaheuristics; Particle Swarm Optimization or Differential Evolution  
+      Stage 2. Heuristic placement routine (e.g. bottom left fit)
 
 **Particle Swarm Optimization** (PSO) is a computational optimization technique inspired by the social behavior of birds and fish. 
 It is a population-based, stochastic search algorithm that is used to find approximate solutions to optimization and search problems.
