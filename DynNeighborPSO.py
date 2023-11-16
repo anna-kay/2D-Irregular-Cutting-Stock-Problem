@@ -52,24 +52,9 @@ class DynNeighborPSO:
                 values are just not plotted). In the latter case, the xdata would have to be set to 
                 np.arange(pso.MaxIterations+1)-1, so that the X axis starts from -1.
     """
-    
-    
-    def __init__( self
-                , ObjectiveFcn
-                , nVars
-                , LowerBounds = None
-                , UpperBounds = None
-                , SwarmSize = None
-                , SelfAdjustmentWeight  = 2.05 
-                , SocialAdjustmentWeight = 2.05 
-                , InertiaRange = [0.4, 0.9] 
-                , MinNeighborsFraction = 0.5
-                , FunctionTolerance = 1.0e-6
-                , MaxIterations = None
-                , MaxStallIterations = 20
-                , OutputFcn = None
-                , UseParallel = False
-                ):
+
+    def __init__(self, ObjectiveFcn, nVars, LowerBounds=None, UpperBounds=None, SwarmSize=None, SelfAdjustmentWeight=2.05, SocialAdjustmentWeight=2.05, InertiaRange=[0.4, 0.9], MinNeighborsFraction=0.5, FunctionTolerance=1.0e-6, MaxIterations=None, MaxStallIterations=20, OutputFcn=None, UseParallel=False
+                 ):
         """ The object is initialized with two mandatory positional arguments:
                 o ObjectiveFcn: function object that accepts a vector (the particle) and returns the scalar fitness 
                                 value, i.e., FitnessValue = ObjectiveFcn(Particle)
@@ -107,7 +92,7 @@ class DynNeighborPSO:
         """
         self.ObjectiveFcn = ObjectiveFcn
         self.nVars = nVars
-        
+
         # assert options validity (simple checks only) & store them in the object
         if SwarmSize is None:
             self.SwarmSize = min(100, 10*nVars)
@@ -115,37 +100,41 @@ class DynNeighborPSO:
             assert np.isscalar(SwarmSize) and SwarmSize > 1, \
                 "The SwarmSize option must be a scalar integer greater than 1."
             self.SwarmSize = max(2, int(round(SwarmSize)))
-        
-        assert np.isscalar(SelfAdjustmentWeight), "The SelfAdjustmentWeight option must be a scalar number."
+
+        assert np.isscalar(
+            SelfAdjustmentWeight), "The SelfAdjustmentWeight option must be a scalar number."
         self.SelfAdjustmentWeight = SelfAdjustmentWeight
-        assert np.isscalar(SocialAdjustmentWeight), "The SocialAdjustmentWeight option must be a scalar number."
+        assert np.isscalar(
+            SocialAdjustmentWeight), "The SocialAdjustmentWeight option must be a scalar number."
         self.SocialAdjustmentWeight = SocialAdjustmentWeight
-        
-        assert len(InertiaRange) == 2, "The InertiaRange option must be a vector with 2 elements."
+
+        assert len(
+            InertiaRange) == 2, "The InertiaRange option must be a vector with 2 elements."
         self.InertiaRange = np.array(InertiaRange, dtype=float)
         self.InertiaRange.sort()
         assert np.isscalar(MinNeighborsFraction) and MinNeighborsFraction >= 0.0 and MinNeighborsFraction <= 1.0, \
-                "The MinNeighborsFraction option must be a scalar number in the range [0,1]."
+            "The MinNeighborsFraction option must be a scalar number in the range [0,1]."
         self.MinNeighborsFraction = MinNeighborsFraction
-        
+
         assert np.isscalar(FunctionTolerance) and FunctionTolerance >= 0.0, \
-                "The FunctionTolerance option must be a scalar number greater or equal to 0."
+            "The FunctionTolerance option must be a scalar number greater or equal to 0."
         self.FunctionTolerance = FunctionTolerance
-        
+
         if MaxIterations is None:
             self.MaxIterations = 200*nVars
         else:
-            assert np.isscalar(MaxIterations), "The MaxIterations option must be a scalar integer greater than 0."
+            assert np.isscalar(
+                MaxIterations), "The MaxIterations option must be a scalar integer greater than 0."
             self.MaxIterations = max(1, int(round(MaxIterations)))
         assert np.isscalar(MaxStallIterations), \
             "The MaxStallIterations option must be a scalar integer greater than 0."
         self.MaxStallIterations = max(1, int(round(MaxStallIterations)))
-        
+
         self.OutputFcn = OutputFcn
-        assert np.isscalar(UseParallel) and (isinstance(UseParallel,bool) or isinstance(UseParallel,np.bool_)), \
+        assert np.isscalar(UseParallel) and (isinstance(UseParallel, bool) or isinstance(UseParallel, np.bool_)), \
             "The UseParallel option must be a scalar boolean value."
         self.UseParallel = UseParallel
-        
+
         # lower bounds
         if LowerBounds is None:
             self.LowerBounds = -1000.0 * np.ones(nVars)
@@ -166,83 +155,85 @@ class DynNeighborPSO:
         self.UpperBounds[~np.isfinite(self.UpperBounds)] = 1000.0
         assert len(self.UpperBounds) == nVars, \
             "When providing a vector for UpperBounds its number of element must equal the number of problem variables."
-        
+
         assert np.all(self.LowerBounds <= self.UpperBounds), \
             "Upper bounds must be greater or equal to lower bounds for all variables."
-        
-        
+
         # check that we have joblib if UseParallel is True
         if self.UseParallel and not HaveJoblib:
-            warnings.warn("""If UseParallel is set to True, it requires the joblib package that could not be imported; swarm objective values will be computed in serial mode instead.""")
+            warnings.warn(
+                """If UseParallel is set to True, it requires the joblib package that could not be imported; swarm objective values will be computed in serial mode instead.""")
             self.UseParallel = False
-        
+
         # PSO initialization: store everything into a self, which is also used be OutputFcn
         nParticles = self.SwarmSize
-        
+
         # Initial swarm: randomly in [lower,upper] and if any is +-Inf in [-1000, 1000]
         lbMatrix = np.tile(self.LowerBounds, (nParticles, 1))
         ubMatrix = np.tile(self.UpperBounds, (nParticles, 1))
         bRangeMatrix = ubMatrix - lbMatrix
-        
+
         #
         #   RANDOMLY INITIALIZE D PARTICLES
         #
-        self.Swarm = lbMatrix + np.random.rand(nParticles,nVars) * bRangeMatrix
+        self.Swarm = lbMatrix + \
+            np.random.rand(nParticles, nVars) * bRangeMatrix
         #self.Swarm = np.around(self.Swarm, decimals=3)
-        
+
         #
         #   RANDOMLY INITIALIZE EQUIVALENT VELOCITY VECTORS
         #
         # Initial velocity: random in [-(UpperBound-LowerBound), (UpperBound-LowerBound)]
-        self.Velocity = -bRangeMatrix + 2.0 * np.random.rand(nParticles,nVars) * bRangeMatrix
-        
+        self.Velocity = -bRangeMatrix + 2.0 * \
+            np.random.rand(nParticles, nVars) * bRangeMatrix
+
         #
-        #   CALCULATE INITIAL FITNESS 
+        #   CALCULATE INITIAL FITNESS
         #
         # Initial fitness
         self.CurrentSwarmFitness = np.zeros(nParticles)
         self.__evaluateSwarm()
-        
-        
+
         #
         #   INITIALIZATION of PreviousBestPosition matrix with current values of our swarm,
         #   since they are the only ones available
         #
         # Initial best-so-far individuals and global best
-        self.PreviousBestPosition = self.Swarm.copy() # size = numberOfParticles (swarmSize) * particleSize
+        # size = numberOfParticles (swarmSize) * particleSize
+        self.PreviousBestPosition = self.Swarm.copy()
         self.PreviousBestFitness = self.CurrentSwarmFitness.copy()
-        
+
         # bInd -> index of the best particle of this swarm
-        bInd = self.CurrentSwarmFitness.argmin() 
+        bInd = self.CurrentSwarmFitness.argmin()
         self.GlobalBestFitness = self.CurrentSwarmFitness[bInd].copy()
         self.GlobalBestPosition = self.PreviousBestPosition[bInd, :].copy()
-        
+
         # iteration counter starts at -1, meaning initial population
-        self.Iteration = -1;
-        
+        self.Iteration = -1
+
         # Initial neighborhood & inertia
-        self.MinNeighborhoodSize = max(2, int(np.floor(nParticles * self.MinNeighborsFraction)));
-        self.AdaptiveNeighborhoodSize = self.MinNeighborhoodSize;
-        
+        self.MinNeighborhoodSize = max(
+            2, int(np.floor(nParticles * self.MinNeighborsFraction)))
+        self.AdaptiveNeighborhoodSize = self.MinNeighborhoodSize
+
         if np.all(self.InertiaRange >= 0):
             self.AdaptiveInertia = self.InertiaRange[1]
         else:
             self.AdaptiveInertia = self.InertiaRange[0]
-        
-        self.StallCounter = 0;
-        
+
+        self.StallCounter = 0
+
         # Keep the global best of each iteration as an array initialized with NaNs. First element is for initial swarm,
         # so it has self.MaxIterations+1 elements. Useful for output functions, but is also used for the insignificant
         # improvement stopping criterion.
         self.GlobalBestSoFarFitnesses = np.zeros(self.MaxIterations+1)
         self.GlobalBestSoFarFitnesses.fill(np.nan)
         self.GlobalBestSoFarFitnesses[0] = self.GlobalBestFitness
-        
+
         # call output function, but neglect the returned stop flag
         if self.OutputFcn:
             self.OutputFcn(self)
-    
-    
+
     def __evaluateSwarm(self):
         """ Helper private member function that evaluates the population, by calling ObjectiveFcn either in serial or
             parallel mode, depending on the UseParallel option during initialization.
@@ -250,121 +241,127 @@ class DynNeighborPSO:
         nParticles = self.SwarmSize
         if self.UseParallel:
             nCores = multiprocessing.cpu_count()
-            self.CurrentSwarmFitness[:] = Parallel(n_jobs=nCores)( 
-                    delayed(self.ObjectiveFcn)(self.Swarm[i,:]) for i in range(nParticles) )
+            self.CurrentSwarmFitness[:] = Parallel(n_jobs=nCores)(
+                delayed(self.ObjectiveFcn)(self.Swarm[i, :]) for i in range(nParticles))
         else:
-            self.CurrentSwarmFitness[:] = [self.ObjectiveFcn(self.Swarm[i,:]) for i in range(nParticles)]
-    
-        
-    def optimize( self ):
+            self.CurrentSwarmFitness[:] = [self.ObjectiveFcn(
+                self.Swarm[i, :]) for i in range(nParticles)]
+
+    def optimize(self):
         """ Runs the iterative process on the initialized swarm. """
-        
+
         nParticles = self.SwarmSize
         nVars = self.nVars
-                
+
         # start the iteration
         doStop = False
         selfWeight = self.SelfAdjustmentWeight
         socialWeight = self.SocialAdjustmentWeight
-        
+
         while not doStop:
             self.Iteration += 1
 
             for p in range(nParticles):
                 # find neighbors
                 # randomly select neighbors according to AdaptiveNeighborhoodSize
-                neighbors = np.random.choice( nParticles-1, size=self.AdaptiveNeighborhoodSize, replace=False)
-                neighbors[neighbors >= p] += 1; # do not select itself, i.e., index p
-                
+                neighbors = np.random.choice(
+                    nParticles-1, size=self.AdaptiveNeighborhoodSize, replace=False)
+                # do not select itself, i.e., index p
+                neighbors[neighbors >= p] += 1
+
                 bInd = self.PreviousBestFitness[neighbors].argmin()
                 bestNeighbor = neighbors[bInd]
-                
+
                 # update velocity
                 randSelf = np.random.rand(nVars)
                 randSocial = np.random.rand(nVars)
-                self.Velocity[p,:] = self.AdaptiveInertia * self.Velocity[p,:] \
-                    + selfWeight * randSelf * (self.PreviousBestPosition[p,:] - self.Swarm[p,:]) \
-                    + socialWeight * randSocial * (self.PreviousBestPosition[bestNeighbor,:] - self.Swarm[p,:])
-                
+                self.Velocity[p, :] = self.AdaptiveInertia * self.Velocity[p, :] \
+                    + selfWeight * randSelf * (self.PreviousBestPosition[p, :] - self.Swarm[p, :]) \
+                    + socialWeight * randSocial * \
+                    (self.PreviousBestPosition[bestNeighbor,
+                     :] - self.Swarm[p, :])
+
                 # update position
-                self.Swarm[p,:] += self.Velocity[p,:]
-                
+                self.Swarm[p, :] += self.Velocity[p, :]
+
                 # check bounds violation
-                posInvalid = self.Swarm[p,:] < self.LowerBounds
-                self.Swarm[p,posInvalid] = self.LowerBounds[posInvalid]
-                self.Velocity[p,posInvalid] = 0.0
-                
-                posInvalid = self.Swarm[p,:] > self.UpperBounds
-                self.Swarm[p,posInvalid] = self.UpperBounds[posInvalid]
-                self.Velocity[p,posInvalid] = 0.0
-            
+                posInvalid = self.Swarm[p, :] < self.LowerBounds
+                self.Swarm[p, posInvalid] = self.LowerBounds[posInvalid]
+                self.Velocity[p, posInvalid] = 0.0
+
+                posInvalid = self.Swarm[p, :] > self.UpperBounds
+                self.Swarm[p, posInvalid] = self.UpperBounds[posInvalid]
+                self.Velocity[p, posInvalid] = 0.0
+
             # calculate new fitness & update best
             #
             # particlesProgressed = ta particles exoun proxwrisei, auta pou
             #                       exoun proxwrisei exoun timi True
             self.__evaluateSwarm()
             particlesProgressed = self.CurrentSwarmFitness < self.PreviousBestFitness
-            self.PreviousBestPosition[particlesProgressed, :] = self.Swarm[particlesProgressed, :]
+            self.PreviousBestPosition[particlesProgressed,
+                                      :] = self.Swarm[particlesProgressed, :]
             self.PreviousBestFitness[particlesProgressed] = self.CurrentSwarmFitness[particlesProgressed]
-            
+
             # update global best, adaptive neighborhood size and stall counter
             newBestInd = self.CurrentSwarmFitness.argmin()
             newBestFit = self.CurrentSwarmFitness[newBestInd]
-            
+
             if newBestFit < self.GlobalBestFitness:
                 self.GlobalBestFitness = newBestFit
                 self.GlobalBestPosition = self.Swarm[newBestInd, :].copy()
-                
+
                 self.StallCounter = max(0, self.StallCounter-1)
                 self.AdaptiveNeighborhoodSize = self.MinNeighborhoodSize
-                
+
                 if self.StallCounter < 2:
                     self.AdaptiveInertia *= 2.0
                 else:
-                    self.AdaptiveInertia /= 2.0;
-                
-                self.AdaptiveInertia = max( self.InertiaRange[0], min(self.InertiaRange[1], self.AdaptiveInertia) )
+                    self.AdaptiveInertia /= 2.0
+
+                self.AdaptiveInertia = max(self.InertiaRange[0], min(
+                    self.InertiaRange[1], self.AdaptiveInertia))
             else:
                 self.StallCounter += 1
                 self.AdaptiveNeighborhoodSize = min(
-                        self.AdaptiveNeighborhoodSize+self.MinNeighborhoodSize, nParticles-1 )
-                
+                    self.AdaptiveNeighborhoodSize+self.MinNeighborhoodSize, nParticles-1)
+
             # first element of self.GlobalBestSoFarFitnesses is for self.Iteration == -1
-            self.GlobalBestSoFarFitnesses[self.Iteration+1] = self.GlobalBestFitness
-            
+            self.GlobalBestSoFarFitnesses[self.Iteration +
+                                          1] = self.GlobalBestFitness
+
             # run output function and stop if necessary
             if self.OutputFcn and self.OutputFcn(self):
                 self.StopReason = 'OutputFcn requested to stop.'
                 doStop = True
                 continue
-            
+
             # stop if max iterations
             if self.Iteration >= self.MaxIterations-1:
                 self.StopReason = 'MaxIterations reached.'
                 doStop = True
                 continue
-            
+
             # stop if insignificant improvement
             if self.Iteration > self.MaxStallIterations:
                 # The minimum global best fitness is the one stored in self.GlobalBestSoFarFitnesses[self.Iteration+1]
-                # (only updated if newBestFit is less than the previously stored). The maximum (may be equal to the 
+                # (only updated if newBestFit is less than the previously stored). The maximum (may be equal to the
                 # current) is the one  in self.GlobalBestSoFarFitnesses MaxStallIterations before.
                 minBestFitness = self.GlobalBestSoFarFitnesses[self.Iteration+1]
-                maxPastBestFit = self.GlobalBestSoFarFitnesses[self.Iteration+1-self.MaxStallIterations]
+                maxPastBestFit = self.GlobalBestSoFarFitnesses[self.Iteration +
+                                                               1-self.MaxStallIterations]
                 if (maxPastBestFit == 0.0) and (minBestFitness < maxPastBestFit):
                     windowProgress = np.inf  # don't stop
                 elif (maxPastBestFit == 0.0) and (minBestFitness == 0.0):
                     windowProgress = 0.0  # not progressed
                 else:
-                    windowProgress = abs(minBestFitness - maxPastBestFit) / abs(maxPastBestFit)
+                    windowProgress = abs(
+                        minBestFitness - maxPastBestFit) / abs(maxPastBestFit)
                 if windowProgress <= self.FunctionTolerance:
                     self.StopReason = 'Population did not improve significantly the last MaxStallIterations.'
                     doStop = True
-            
-        
+
         # print stop message
         print('Algorithm stopped after {} iterations. Best fitness attained: {}'.format(
-                self.Iteration+1,self.GlobalBestFitness))
+            self.Iteration+1, self.GlobalBestFitness))
         print(f'Stop reason: {self.StopReason}')
-        
-            
