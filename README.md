@@ -28,7 +28,7 @@ It is considered an evolutionary algorithm, which is a class of optimization tec
 
 It was assumed that the stock pieces (Stock) are placed one after the other in an approximately square space, 20x20.
 
-![search_space](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/6c6f2370-0967-40ac-8e08-32d4b405fb55)
+![search_space](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/4c23cde7-fdfe-41f4-9f0b-1a2b3fa5d324)
 
 This choice is convenient for setting the limits of the variables involved and the limits of the search space.
 
