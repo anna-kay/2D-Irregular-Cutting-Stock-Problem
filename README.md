@@ -32,7 +32,7 @@ It was assumed that the stock pieces (Stock) are placed one after the other in a
 
 This choice is convenient for setting the limits of the variables involved and the limits of the search space.
 
-### Encoding Choices - Genotype & Phenotype 
+### Encoding - Genotype & Phenotype 
 
 In the case of the PSO, each particle (member of the population) encodes a full solution of the problem, i.e. it comprises a number of triplets (coordinates x & y and the angle θ) that are necesary for the definition of the shift (by x & y) and the rotation of each of the polygons.
 The number of the triplets of the particle is equal to the number of the items of the current order.
@@ -61,13 +61,33 @@ A single-objective multiple criteria objective function, following the general f
 
 <img width="523" alt="objective_function_formalism" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/55e1e06c-2f8f-4351-bdd8-e10952807ed1">
 
-where <img width="60" alt="a" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/2ff238d6-5c59-4f9e-ad39-cd95c886780f"> and <img width="88" alt="sum" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/46acc290-b83f-48a4-88e3-a8e896fd2c7b"> , was chosen.  
+, where <img width="60" alt="a" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/2ff238d6-5c59-4f9e-ad39-cd95c886780f"> and <img width="88" alt="sum" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/46acc290-b83f-48a4-88e3-a8e896fd2c7b"> , was chosen.  
 
 The selected criteria can be organized into two groups:
 1. Criteria that search for an acceptable solution:
 
+**Area of the overlap of the polygons of the order** (area overlap based on the solution given by the particle). The computation of the overlap is done per pair of polygons, taking into account all the possible pairs, and summing the areas.
+**Area of the polygons that stays out of the stock**: The total area of the polygons that either protrudes outs of a stock piece or was not placed in one of the stock pieces.
+
 2. Criterium that leads to the optimization of the solution
-**Utilization Ratio**  
+
+**Utilization Ratio**
+
+It was considered that the minimization of the areas (group 1), and the maximization of utilization ratio are not contradictory, and thus can be combined in a single objcetive function:
+
+![objective_function](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/24e46790-5623-4672-a938-c9e6a47c8b3e)
+
+, where:
+
+intersectingArea is the area of the overlap of the polygons of the order,
+sumPenaltyArea is the area of the polygons that stays out of the stock, and
+sumOfBinUtilizationRatios the sum of the utilization ratios of the stock bins computed as follows:
+
+![utilizationRatios](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/2574a7a6-806f-46b0-80db-e862ad4fa15a)
+
+(the multiplication by ![fraction](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/ffb05aae-2a2e-4de5-8a4f-09d70bc705bc) is performed in order to "encourage" the algorithm to fill the smaller bins of the stock, the value 2.35 was chosen empirically)
+
+The objective was the **minimization** of the value of the function.
 
 ## References and Literature
 
