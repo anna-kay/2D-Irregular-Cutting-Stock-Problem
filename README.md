@@ -28,7 +28,7 @@ It is considered an evolutionary algorithm, which is a class of optimization tec
 
 It was assumed that the stock pieces (Stock) are placed one after the other in an approximately square space, 20x20.
 
-![search_space](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/4c23cde7-fdfe-41f4-9f0b-1a2b3fa5d324)
+                                        ![search_space](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/4c23cde7-fdfe-41f4-9f0b-1a2b3fa5d324)
 
 This choice is convenient for setting the limits of the variables involved and the limits of the search space.
 
@@ -87,8 +87,7 @@ It was considered that the minimization of the areas (group 1), and the maximiza
 
 ![utilizationRatios](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/322d925c-0ae2-42b7-a9d3-21c77bd146d8)
 
-
-(the multiplication by ![fraction](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/7d197cd2-bec5-40e7-96b2-1b56eaa74780) is performed in order to "encourage" the algorithm to fill the smaller bins of the stock, the value 2.35 was chosen empirically)
+, the multiplication by ![fraction](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/7d197cd2-bec5-40e7-96b2-1b56eaa74780) is performed in order to "encourage" the algorithm to fill the smaller bins of the stock, the value 2.35 was chosen empirically.
 
 The objective was the **minimization** of the value of the function.
 
