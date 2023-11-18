@@ -28,7 +28,7 @@ It is considered an evolutionary algorithm, which is a class of optimization tec
 
 It was assumed that the stock pieces (Stock) are placed one after the other in an approximately square space, 20x20.
 
-![search_space](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/c42268d8-a0b1-4c41-8f2c-2a3ff384c580)
+![search_space](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/6c6f2370-0967-40ac-8e08-32d4b405fb55)
 
 This choice is convenient for setting the limits of the variables involved and the limits of the search space.
 
@@ -61,9 +61,7 @@ A single-objective multiple criteria objective function, following the general f
 
 <img width="523" alt="objective_function_formalism" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/55e1e06c-2f8f-4351-bdd8-e10952807ed1">
 
-where <img width="60" alt="a" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/2ff238d6-5c59-4f9e-ad39-cd95c886780f"> and <img width="88" alt="sum" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/46acc290-b83f-48a4-88e3-a8e896fd2c7b">
-
-, was chosen.  
+where <img width="60" alt="a" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/2ff238d6-5c59-4f9e-ad39-cd95c886780f"> and <img width="88" alt="sum" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/46acc290-b83f-48a4-88e3-a8e896fd2c7b"> , was chosen.  
 
 The selected criteria can be organized into two groups:
 1. Criteria that search for an acceptable solution:
