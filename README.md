@@ -28,9 +28,11 @@ It is considered an evolutionary algorithm, which is a class of optimization tec
 
 It was assumed that the stock pieces (Stock) are placed one after the other in an approximately square space, 20x20.
 
+![search_space](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/c42268d8-a0b1-4c41-8f2c-2a3ff384c580)
+
 This choice is convenient for setting the limits of the variables involved and the limits of the search space.
 
-### Encoding Choices - "Genotype & Phenotype" 
+### Encoding Choices - Genotype & Phenotype 
 
 In the case of the PSO, each particle (member of the population) encodes a full solution of the problem, i.e. it comprises a number of triplets (coordinates x & y and the angle θ) that are necesary for the definition of the shift (by x & y) and the rotation of each of the polygons.
 The number of the triplets of the particle is equal to the number of the items of the current order.
@@ -41,7 +43,7 @@ For the angle θ, given that most of the polygons of this problem set are rectan
 
 Thus the search space has been defined as the 3xn-D space, given the number n of the polygons that have to be placed, with the first and the second variable of each triplet belonging to [0, 20], and the third always set to the ones of the values of {0, 90}.
 
-The exact same approach is adopted fro DEGL with each agent (member of the population) encoding a full solution of the problem.
+The exact same approach is adopted for DEGL with each agent (member of the population) encoding a full solution of the problem.
 
 ### Two-stage Solution
 
@@ -59,8 +61,9 @@ A single-objective multiple criteria objective function, following the general f
 
 <img width="523" alt="objective_function_formalism" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/55e1e06c-2f8f-4351-bdd8-e10952807ed1">
 
-where <img width="61" alt="a" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/061275f3-16ca-4570-ab32-d07e8dbbe8b3"> and <img width="92" alt="Screenshot 2023-11-18 232126b" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/31e39f77-7cd3-4003-98fc-f145e32e5d58">
-was chosen.  
+where <img width="60" alt="a" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/2ff238d6-5c59-4f9e-ad39-cd95c886780f"> and <img width="88" alt="sum" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/46acc290-b83f-48a4-88e3-a8e896fd2c7b">
+
+, was chosen.  
 
 The selected criteria can be organized into two groups:
 1. Criteria that search for an acceptable solution:
