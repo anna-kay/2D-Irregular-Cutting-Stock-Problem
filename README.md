@@ -82,11 +82,11 @@ It was considered that the minimization of the areas (group 1), and the maximiza
 
 , where:
 
-*intersectingArea* is the **area of the overlap of the polygons of the order**,
+- *intersectingArea* is the **area of the overlap of the polygons of the order**,
 
-*sumPenaltyArea* is the **area of the polygons that stays out of the stock**, and
+- *sumPenaltyArea* is the **area of the polygons that stays out of the stock**, and
 
-*sumOfBinUtilizationRatios* the **sum of the utilization ratios of the stock bins** computed as follows:
+- *sumOfBinUtilizationRatios* the **sum of the utilization ratios of the stock bins** computed as follows:
 
 ![utilizationRatios](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/322d925c-0ae2-42b7-a9d3-21c77bd146d8)
 
