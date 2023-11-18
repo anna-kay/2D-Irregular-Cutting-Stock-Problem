@@ -41,7 +41,7 @@ The mapping of the x & y values of the triplets to the x & y values by which the
 
 For the angle θ, given that most of the polygons of this problem set are rectangles, and all of them, apart from the scalene triangle, have at least one line of summetry, it was considered sufficient to limit the rotations of the polygons to 0 or 90 degrees.
 
-Thus the search space has been defined as the 3xn-D space, given the number n of the polygons that have to be placed, with the first and the second variable of each triplet belonging to [0, 20], and the third always set to the ones of the values of {0, 90}.
+Thus the search space has been defined as the 3xn-D space, given the number n of the polygons that have to be placed, with the first and the second variable of each triplet belonging to [0, 20], and the third always set to the one of the values of {0, 90}.
 
 The exact same approach is adopted for DEGL with each agent (member of the population) encoding a full solution of the problem.
 
