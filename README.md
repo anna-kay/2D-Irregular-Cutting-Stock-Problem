@@ -69,7 +69,7 @@ The selected criteria can be organized into two groups:
      - **Area of the overlap of the polygons of the order** (area overlap based on the solution given by the particle). The computation of the overlap is done per pair of polygons, taking into account all the possible pairs, and summing the areas.
      - **Area of the polygons that stays out of the stock**: The total area of the polygons that either protrudes outs of a stock piece or was not placed in one of the stock pieces.
 
-2. Criterium that leads to the optimization of the solution
+2. Criterium that leads to the optimization of the solution:
      - **Utilization Ratio**
 
 It was considered that the minimization of the areas (group 1), and the maximization of utilization ratio are not contradictory, and thus can be combined in a single objcetive function:
