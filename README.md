@@ -90,6 +90,10 @@ It was considered that the minimization of the areas (group 1), and the maximiza
 
 The objective was the **minimization** of the value of the function.
 
+## Demo
+
+https://www.youtube.com/watch?v=yEKS3tX4Wxg
+
 ## References and Literature
 
 R. P. Abeysooriya, “Cutting Patterns for Efficient Production of Irregular-shaped
