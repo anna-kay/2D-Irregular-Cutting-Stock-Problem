@@ -67,11 +67,11 @@ A single-objective multiple criteria objective function, following the general f
 
 The selected criteria can be organized into two groups:
 1. Criteria that search for an acceptable solution:
-     - Area of the overlap of the polygons of the order** (area overlap based on the solution given by the particle). The computation of the overlap is done per pair of polygons, taking into account all the possible pairs, and summing the areas.
-     - Area of the polygons that stays out of the stock**: The total area of the polygons that either protrudes outs of a stock piece or was not placed in one of the stock pieces.
+     - **Area of the overlap of the polygons of the order** (area overlap based on the solution given by the particle). The computation of the overlap is done per pair of polygons, taking into account all the possible pairs, and summing the areas.
+     - **Area of the polygons that stays out of the stock**: The total area of the polygons that either protrudes outs of a stock piece or was not placed in one of the stock pieces.
 
 2. Criterium that leads to the optimization of the solution
-     - Utilization Ratio
+     - **Utilization Ratio**
 
 It was considered that the minimization of the areas (group 1), and the maximization of utilization ratio are not contradictory, and thus can be combined in a single objcetive function:
 
@@ -79,16 +79,16 @@ It was considered that the minimization of the areas (group 1), and the maximiza
 
 , where:
 
-* *intersectingArea* * is the area of the overlap of the polygons of the order,
+*intersectingArea* is the **area of the overlap of the polygons of the order**,
 
-* *sumPenaltyArea* * is the area of the polygons that stays out of the stock, and
+*sumPenaltyArea* is the **area of the polygons that stays out of the stock**, and
 
-* *sumOfBinUtilizationRatios* * the sum of the utilization ratios of the stock bins computed as follows:
+*sumOfBinUtilizationRatios* the **sum of the utilization ratios of the stock bins** computed as follows:
 
 ![utilizationRatios](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/322d925c-0ae2-42b7-a9d3-21c77bd146d8)
 
 
-(the multiplication by  ![fraction](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/51497988-89d6-47a4-89c7-7b323d2e05a9) is performed in order to "encourage" the algorithm to fill the smaller bins of the stock, the value 2.35 was chosen empirically)
+(the multiplication by ![fraction](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/7d197cd2-bec5-40e7-96b2-1b56eaa74780) is performed in order to "encourage" the algorithm to fill the smaller bins of the stock, the value 2.35 was chosen empirically)
 
 The objective was the **minimization** of the value of the function.
 
