@@ -64,6 +64,7 @@ A single-objective multiple criteria objective function, following the general f
 
 , where <img width="60" alt="a" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/2ff238d6-5c59-4f9e-ad39-cd95c886780f"> and <img width="88" alt="sum" src="https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/46acc290-b83f-48a4-88e3-a8e896fd2c7b"> , was chosen.  
 
+
 The selected criteria can be organized into two groups:
 1. Criteria that search for an acceptable solution:
      - Area of the overlap of the polygons of the order** (area overlap based on the solution given by the particle). The computation of the overlap is done per pair of polygons, taking into account all the possible pairs, and summing the areas.
@@ -78,9 +79,11 @@ It was considered that the minimization of the areas (group 1), and the maximiza
 
 , where:
 
-intersectingArea is the area of the overlap of the polygons of the order,
-sumPenaltyArea is the area of the polygons that stays out of the stock, and
-sumOfBinUtilizationRatios the sum of the utilization ratios of the stock bins computed as follows:
+* *intersectingArea* * is the area of the overlap of the polygons of the order,
+
+* *sumPenaltyArea* * is the area of the polygons that stays out of the stock, and
+
+* *sumOfBinUtilizationRatios* * the sum of the utilization ratios of the stock bins computed as follows:
 
 ![utilizationRatios](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/322d925c-0ae2-42b7-a9d3-21c77bd146d8)
 
