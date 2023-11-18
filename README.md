@@ -49,6 +49,7 @@ The exact same approach is adopted for DEGL with each agent (member of the popul
 
 **Main stage**: Metaheuristic Algorithm; Particle Swarm Optimization or Differential Evolution 
 In this stage, each order piece (polygon) is assigned to a stock piece (stock bin).
+     
 **Auxiliary stage**: Bottom Left Fill Heuristic Placement
 For each stock piece, the order items are placed (and subsequently "cut") one-by-one in the most bottom-left point of the stock piece that it can fit to. 
 More particularly, a greedy approach is adopted; the order items are sorted in descending order according to their area, and are placed one-by-one in the most bottom-left point after trying out two potential rotations of the polygon (0 and 90 degrees clockwise).
@@ -65,13 +66,11 @@ A single-objective multiple criteria objective function, following the general f
 
 The selected criteria can be organized into two groups:
 1. Criteria that search for an acceptable solution:
-
-**Area of the overlap of the polygons of the order** (area overlap based on the solution given by the particle). The computation of the overlap is done per pair of polygons, taking into account all the possible pairs, and summing the areas.
-**Area of the polygons that stays out of the stock**: The total area of the polygons that either protrudes outs of a stock piece or was not placed in one of the stock pieces.
+     - Area of the overlap of the polygons of the order** (area overlap based on the solution given by the particle). The computation of the overlap is done per pair of polygons, taking into account all the possible pairs, and summing the areas.
+     - Area of the polygons that stays out of the stock**: The total area of the polygons that either protrudes outs of a stock piece or was not placed in one of the stock pieces.
 
 2. Criterium that leads to the optimization of the solution
-
-**Utilization Ratio**
+     - Utilization Ratio
 
 It was considered that the minimization of the areas (group 1), and the maximization of utilization ratio are not contradictory, and thus can be combined in a single objcetive function:
 
@@ -83,9 +82,10 @@ intersectingArea is the area of the overlap of the polygons of the order,
 sumPenaltyArea is the area of the polygons that stays out of the stock, and
 sumOfBinUtilizationRatios the sum of the utilization ratios of the stock bins computed as follows:
 
-![utilizationRatios](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/2574a7a6-806f-46b0-80db-e862ad4fa15a)
+![utilizationRatios](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/322d925c-0ae2-42b7-a9d3-21c77bd146d8)
 
-(the multiplication by ![fraction](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/ffb05aae-2a2e-4de5-8a4f-09d70bc705bc) is performed in order to "encourage" the algorithm to fill the smaller bins of the stock, the value 2.35 was chosen empirically)
+
+(the multiplication by  ![fraction](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem/assets/56791604/51497988-89d6-47a4-89c7-7b323d2e05a9) is performed in order to "encourage" the algorithm to fill the smaller bins of the stock, the value 2.35 was chosen empirically)
 
 The objective was the **minimization** of the value of the function.
 
