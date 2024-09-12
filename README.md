@@ -9,7 +9,9 @@ https://www.youtube.com/watch?v=yEKS3tX4Wxg
 (python==3.10.14)
 
 matplotlib==3.5.1
+
 shapely==1.7.0
+
 descartes==1.1.0
 
 Most importantly use shapely=1.7.0, descartes throws errors with newer versions.
