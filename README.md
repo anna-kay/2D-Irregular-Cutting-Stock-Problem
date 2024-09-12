@@ -4,6 +4,20 @@
 
 https://www.youtube.com/watch?v=yEKS3tX4Wxg
 
+## Dependencies
+
+(python==3.10.14)
+
+matplotlib==3.5.1
+shapely==1.7.0
+descartes==1.1.0
+
+Most importantly use shapely=1.7.0, descartes throws errors with newer versions.
+
+This project was developed using **Spyder (v5.5.1)**. For optimal plotting, navigate to:  
+`Tools` -> `Preferences` -> `IPython Console` -> `Graphics`, and select **Automatic** or **Qt5**.
+
+
 ## Problem Description
 
 The **2D bin-cutting** or **bin-packing problem** is a challenging optimization problem that often arises in logistics, manufacturing, and resource allocation scenarios.
