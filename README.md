@@ -140,6 +140,6 @@ git clone https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem.git
 cd 2D-Irregular-Cutting-Stock-Problem
 ```
 
-** Install dependencies
-** The recommended way to run is uding Spyder IDE; run runPSO.py for PSO solution and runDEGL.py for DEGL solution.
+- Install dependencies
+- The recommended way to run is uding Spyder IDE; run runPSO.py for PSO solution and runDEGL.py for DEGL solution.
 
