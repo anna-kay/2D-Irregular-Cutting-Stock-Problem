@@ -141,5 +141,5 @@ cd 2D-Irregular-Cutting-Stock-Problem
 ```
 
 - Install dependencies
-- The recommended way to run is uding Spyder IDE; run runPSO.py for PSO solution and runDEGL.py for DEGL solution.
+- The recommended way to run is using Spyder IDE; run runPSO.py for PSO solution and runDEGL.py for DEGL solution.
 
