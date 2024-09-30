@@ -134,15 +134,12 @@ https://www.youtube.com/watch?v=kHyNqSnzP8Y
 
 ```
 # Clone the repository
-git clone [https://github.com/anna-kay/Reddit-summarization.git](https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem.git)
+git clone https://github.com/anna-kay/2D-Irregular-Cutting-Stock-Problem.git
 
 # Change into the project directory
 cd 2D-Irregular-Cutting-Stock-Problem
 ```
 
-Install dependencies
-
-The recommended way to run is uding Spyder IDE:
-
-run runPSO.py for PSO solution and runDEGL.py for DEGL solution.
+** Install dependencies
+** The recommended way to run is uding Spyder IDE; run runPSO.py for PSO solution and runDEGL.py for DEGL solution.
 
